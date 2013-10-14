@@ -1,0 +1,183 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+
+
+\documentclass[norsk,a4paper,12pt]{article}
+\usepackage[T1]{fontenc} %for å bruke æøå
+\usepackage[utf8]{inputenc}
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\normalfont\scshape} % Make all sections centered, the default font and small caps
+
+
+
+\renewcommand\thesubsection{\Alph{subsection}}
+
+\newenvironment{descr}[1]{\list{}{%
+  \setlength{\topsep}{0pt}
+  \setlength{\itemsep}{0pt}
+  \setlength{\parsep}{0pt}
+  \setlength{\itemindent}{0pt}
+  \settowidth{\labelwidth}{#1}
+  \setlength{\labelsep}{2ex}
+  \setlength{\leftmargin}{\parindent}
+  \addtolength{\leftmargin}{\labelwidth}
+  \addtolength{\leftmargin}{\labelsep}
+  }}
+  {\endlist}
+\newcommand{\idesc}[1]{\item[#1\hspace*{\fill}]}
+
+
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain}% Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+\renewcommand\thesubsection{}
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+\newcommand{\e}[1]{\cdot 10^{#1}}
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\title{	
+\normalfont \normalsize 
+\textsc{Universitetet i Oslo} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge UNIK4520 - Oblig 2\\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Snorre Bjørnstad} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+  
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\section{Problem 1}
+
+Først regner vi ut avstanden mellom bakkestasjonen/gateway og satelitten ved hjelp av følgende formel:
+\begin{align}
+\begin{split}
+R =& \sqrt{h_s^2 + 2R_e(h_s+R_e)\cos(L_r)\cos(l)}\\
+%R =& \sqrt{3.5786\e{7}^2+2\times6.371\e{6}(3.5786\e{7}+6.371\e{6})\times \cos(3^\circ)\cos(43^\circ))}\\
+R =&  3.7756\e{7}
+\end{split}
+\end{align}
+Hvor \par
+\begin{descr}{$h_s = 3.5786\e{7}$}
+  \idesc{$R_e = 6.371\e{6}$} er Jordradiusen
+  \idesc{$h_s = 3.5786\e{7}$} er satelittens høyde over jordoverflaten
+  \idesc{$L_r = 3^\circ$} er den relative longituden til mellom bakkestasjonen/gateway og satelitten
+  \idesc{$l = 43^\circ$} er bakkestasjonen latitude
+\end{descr}
+\newpage
+Videre finner vi  frittromstapet i up- og downlink ved hjelp av følgende formel
+\begin{align}
+FSL = & 10\log \left(\frac{4\pi R}{\lambda} \right)^2
+\end{align}
+
+Hvor \par
+\begin{descr}{$h_s = 3.5786\e{7}$}
+  \idesc{$\lambda$} er bølgelengden til bærebølgen
+  \idesc{$R$} er avstanden mellom bakkestasjon og satelitt som funnet i forrige utregning
+\end{descr}
+På uplinken har vi  en $\lambda = 0.015\unit{m}$ .
+Dette gir oss ett frittromstap på henholdsvis $FSL_{up} = 213.52\unit{dBW}$ og 
+
+\par
+Den totale motatte signaleffekten regnes ut på følgende måte:
+\begin{align}
+P_r =&  P_t + G_r + G_t - FSL
+\end{align}
+
+Hvor
+\begin{descr}{$h_s = 3.5786\e{7}$}
+  \idesc{$P_t$} er effekten sendt ut av transmitter
+  \idesc{$G_t$} er gainen til senderantennen
+  \idesc{$G_r$} er gainen til mottakerantennen
+  \idesc{$FSL$} er frittromstapet
+\end{descr}
+Senderantennensforsterkning er oppgitt til $G_t =32 \unit{dBi}$ og mottakerantennen på sateliten har en oppgitt forsterkning  på $G_r=40 \unit{dBi}$ 
+
+Senderen er i metning ved $P_{sat} =  5\unit{W}= 6.99 \unit{dBW} $ og vi operer med en "back-off"på $2\unit{dB}$, Hvilket gir oss en total sendeeffekt på $P_t = P_{sat} - backoff = 4.99 \unit{dBW}$ 
+ved help av likning 1.3 får vi en  $C_up = P_r =  -131.53\unit{dBW}$
+
+Noise spectral density regnes ut ved hjelp av følgende likning:
+\begin{align}
+N_0 = kT
+\end{align}
+Hvor 
+\begin{descr}{dsfsdsd}
+\idesc{$N_0$} er støy spektral tetthet
+\idesc{$k$} er Boltzmann konstant
+\idesc{$T$} er støytemperaturen inn til antenna 
+\end{descr}
+På satelittens mottaker antenne har vi en støytemperatur på $T =288 \unit{K}$ Dette gir oss en støyspektraltetthet på $N_{0up} = 204.01\unit{dBWHz^{-1}}$
+
+Energi per bit regnes enkelt ut 
+\begin{align}
+  E_b =& C - b
+ \end{align}  
+ Hvor
+ \begin{descr}{sdffd}
+ \idesc{$b$} er bittraten i dB
+ \end{descr}
+
+Med en Bitrate $b = 800 \unit{kbps} = 59.03 \unit{dB(bps)}$ får man en total $\left(\frac{E_b}{N_0}\right)_{up} = 72.47 \unit{dB} $
+
+For nedlinken har man en bølgelengde $\lambda_{down} = 0.01\unit{m}$ og får av ligning 1.2 ett frittromstap på $FSL_{down} = 210.00\unit{dBW}$. Videre har vi ett antennegain på satelittens senderantenne på $G_t = 35.5\unit{dbi}$ og ett antennegain for bakkestasjonen på $G_r = 49.5 \unit{dBi}$.\\
+Satelitten ahr ett forsterkningstrinn som forsterker opp det innkommende signalet med $G_{sat}117\unit{dB}$ som gjør att sendeeffekten blir $P_r + G_{sat} =-131.53 + 117 = -14.53$
+
+Av ligning 1.3 finner vi da att den totale mottatte effekten  på nedlinken blir $C_{down} =  -142.06\unit{dBW}
+
+
+
+
+
+
+
+
+
+\end{document}
